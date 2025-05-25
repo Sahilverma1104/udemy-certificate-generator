@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <img src="ud.png" width="200" height="200" />
+  
+  <div class="certificate-number">
+    Certificate no: <span id="certno"></span>
+  </div>
+  
+  <div class="certificate-url">
+    Certificate url: ude.my/<span id="certurl"></span>
+  </div>
+  
+  <div class="reference-no">
+    Reference Number: <span id="refno"></span>
+  </div>
+  
+  <div class="completeion">
+    CERTIFICATE OF COMPLETION
+  </div>
+
+  <div class="course">
+    <span id="course"></span>
+  </div>
+
+  <div class="instructors">
+    Instructors
+  </div>
+  
+  <div class="instructors-name">
+    <span id="instructor"></span>
+  </div>
+
+  <div class="name">
+    <span id="fullname"></span>
+  </div>
+
+  <div class="date">
+    Date
+  </div>
+  
+  <div class="datee">
+    <span id="date"></span>
+  </div>
+
+  <div class="length">
+    Length
+  </div>
+  
+  <div class="lengthh">
+    <span id="length"></span>
+  </div>
+
+  <script>
+    // Function to generate a random alphanumeric segment
+    function generateRandomSegment(length) {
+      const chars = "abcdef0123456789";
+      let result = "";
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    // Function to generate a certificate number
+    function generateCertificateNumber() {
+      const part1 = generateRandomSegment(8);
+      const part2 = generateRandomSegment(4);
+      const part3 = generateRandomSegment(4);
+      const part4 = generateRandomSegment(4);
+      const numberQuoted = `${Math.floor(100000 + Math.random() * 900000)}`; // 6-digit
+      const shortQuoted = `${Math.floor(10 + Math.random() * 90)}`; // 2-digit
+      return `UC-3308c41b-93cb-485a-9ee3-${numberQuoted}f8ef${shortQuoted}`;
+    }
+
+    // Function to generate reference number like 000X
+    function generateReferenceNumberAfter00() {
+      const singleDigit = Math.floor(Math.random() * 10); // 0–9
+      return "000" + singleDigit;
+    }
+
+    // Load user data from localStorage
+    const fullname = localStorage.getItem("fullname");
+    const date = localStorage.getItem("date");
+    const length = localStorage.getItem("length");
+    const course = localStorage.getItem("course");
+    const instructor = localStorage.getItem("instructor");
+
+    // Insert values into the page
+    document.getElementById("fullname").textContent = fullname;
+    document.getElementById("date").textContent = date;
+    document.getElementById("length").textContent = length;
+    document.getElementById("course").textContent = course;
+    document.getElementById("instructor").textContent = instructor;
+
+    // Generate certificate number and URL
+    const certNumber = generateCertificateNumber();
+    document.getElementById("certno").textContent = certNumber;
+    document.getElementById("certurl").textContent = certNumber;
+
+    // Generate reference number
+    document.getElementById("refno").textContent = generateReferenceNumberAfter00();
+
+    // Clear localStorage after short delay
+    setTimeout(() => {
+      localStorage.clear();
+    }, 100);
+  </script>
+</body>
+</html>
+
+
+
+
+

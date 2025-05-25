@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generatr</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+            background: #e0e0e0;
+            min-height: 100vh;
+        }
+        form {
+            background: white;
+            padding: 20px 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 320px;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+        #certificate {
+            display: none;
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid #000;
+            margin-top: 20px;
+        }
+        #downloadBtn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+     <form id="certForm" method="post">
+        <input type="text" name="fullname" id="fullname" placeholder="Full Name" required><br>
+        <input type="text" name="date" id="date" placeholder="Date of Completion: example- May 25, 2025" required><br>
+        <input type="text" name="length" id="length" placeholder="Length of Course: example- 2 total hours" required><br>
+        <textarea name="course" id="course" placeholder="Course Name" required></textarea><br>
+        <input type="text" name="instructor" id="instructor" placeholder="Instructor's Name" required><br>
+        <button type="submit">Generate</button>
+    </form>
+
+    <script>
+  document.getElementById("certForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Save form data to localStorage
+    localStorage.setItem("fullname", document.getElementById("fullname").value);
+    localStorage.setItem("date", document.getElementById("date").value);
+    localStorage.setItem("length", document.getElementById("length").value);
+    localStorage.setItem("course", document.getElementById("course").value);
+    localStorage.setItem("instructor", document.getElementById("instructor").value);
+
+    // Redirect to index.html
+    window.location.href = "certificate.html";
+  });
+</script>
+</body>
+</html>
